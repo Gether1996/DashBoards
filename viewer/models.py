@@ -47,6 +47,7 @@ class ChatMessage(Model):
     room = ForeignKey(ChatRoom, on_delete=CASCADE)
     value = CharField(max_length=255)
     owner = CharField(max_length=255)
+    color = CharField(max_length=255)
 
     def __str__(self):
         return f"{self.owner}: {self.value}"

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chatroom {{ name }}{% endblock %}
+
+{% block content %}
+
+<style>
+        #data-box {
+            max-width: 400px; /* Set the maximum width for the chat window */
+            margin: auto;
+            border: 1px solid black;
+        }
+</style>
+
+
+    <div class="row">
+        <div class="col">
+            <h3 id="chatroom-name">{{ name }}</h3>
+            <div>User: <span id="user">{{ user }}</span></div>
+            <hr>
+            <div id="data-box">
+                {% if data %}
+                    {% for message in data %}
+                        <p style="background-color: {{ message.color }}">{{ message.owner }} -> {{ message.value }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <input id="data-input" class="form-control" type="text" placeholder="Insert message" autofocus><br>
+                <button class="btn btn-primary" id="submit-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/chatroom.js' %}"></script>
+{% endblock scripts %}

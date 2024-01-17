@@ -4,7 +4,7 @@ var dataInput = document.getElementById('data-input')
 var user = document.getElementById('user').textContent.trim()
 var dataBox = document.getElementById('data-box')
 
-var socket = new WebSocket(`ws://${window.location.host}/ws/${dashboardSlug}/`);
+var socket = new WebSocket(`ws://${window.location.host}/ws/stats/${dashboardSlug}/`);
 console.log(socket);
 
 socket.onopen = function(e) {
@@ -77,3 +77,10 @@ var updateChart = async() => {
 }
 
 drawChart();
+
+addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        document.getElementById('submit-btn').click();
+        document.getElementById('data-input').value = '';
+    }
+});

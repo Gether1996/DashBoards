@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
 from viewer.models import Statistic
+import secrets
 
 
 def chart_data(request, slug):
@@ -13,3 +14,13 @@ def chart_data(request, slug):
         'chartData': chart_data,
         'chartLabels': chart_labels
     })
+
+
+def generate_random_color():
+    # Generate random bytes for the RGB components
+    random_bytes = secrets.token_bytes(3)
+
+    # Convert the bytes to hexadecimal and concatenate them
+    color_code = "#" + random_bytes.hex()
+
+    return color_code

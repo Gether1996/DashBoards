@@ -22,4 +22,26 @@
         </div>
     </form>
 
+    {% if chat_rooms %}
+        <h1>Chat rooms</h1>
+
+        <ul>
+            {% for room in chat_rooms %}
+                <li>
+                    <a href="{% url 'chat_room' name=room.name %}">{{ room.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" name="new-chat-room">
+            <button type="submit" class="btn btn-primary mt-3">+ add chat room</button>
+        </div>
+    </form>
+
+
+
 {% endblock %}

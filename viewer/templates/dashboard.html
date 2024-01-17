@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Statistic {{ name }}{% endblock %}
+
 {% block content %}
 
     <div class="row">
@@ -10,7 +12,7 @@
             <div>User: <span id="user">{{ user }}</span></div>
             <hr>
             <div class="form-group">
-                <input id="data-input" class="form-control" type="number"><br>
+                <input id="data-input" class="form-control" type="number" placeholder="Insert number" autofocus><br>
                 <button class="btn btn-primary" id="submit-btn">Send</button>
             </div>
         </div>
