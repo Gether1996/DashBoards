@@ -2,6 +2,7 @@ from django.db.models import *
 from django.utils.text import slugify
 from django.urls import reverse
 
+
 class Statistic(Model):
     name = CharField(max_length=200)
     slug = SlugField(blank=True)
@@ -21,10 +22,31 @@ class Statistic(Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+
 class DataItem(Model):
     statistic = ForeignKey(Statistic, on_delete=CASCADE)
     value = PositiveSmallIntegerField()
     owner = CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.owner}: {self.value}"
+
+
+class ChatRoom(Model):
+    name = CharField(max_length=200)
+
+    def __str__(self):
+        return str(self.name)
+
+    @property
+    def data(self):
+        return self.chatmessage_set.all()
+
+
+class ChatMessage(Model):
+    room = ForeignKey(ChatRoom, on_delete=CASCADE)
+    value = CharField(max_length=255)
+    owner = CharField(max_length=255)
 
     def __str__(self):
         return f"{self.owner}: {self.value}"

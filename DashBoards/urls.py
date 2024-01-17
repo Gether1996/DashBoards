@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from stats.views import main, dashboard, chart_data
+from viewer.views import main, dashboard
+from DashBoards.backend_funcs import chart_data
 
 urlpatterns = [
     path('admin/', admin.site.urls),
